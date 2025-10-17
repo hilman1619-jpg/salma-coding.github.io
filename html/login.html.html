@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login dengan Tanggal Lahir</title>
+  <style>
+    body {
+      background-image: url('poto-salma.png');
+      background-size: cover;      /* Supaya menutupi seluruh layar */
+      background-position: center; /* Tengah posisi */
+      background-repeat: no-repeat;/* Tidak diulang */
+      height: 100vh;               /* Tinggi penuh layar */
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 80px;
+    }container {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+  <h2>Login dengan Tanggal Lahir</h2>
+ 
+  <form id="loginForm">
+    <input type="text" id="birthdate" placeholder="(DD-MM-YYYY)" required>
+    <br><br>
+    <button type="submit">Login</button>
+  </form>
+
+  <div id="message" class="message"></div>
+
+  <script>
+    // Tanggal lahir yang benar: 17 Oktober 2006
+    const correctBirthdate = { day: 17, month: 10, year: 2006 };
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const input = document.getElementById('birthdate').value.trim();
+      const message = document.getElementById('message');
+
+      try {
+        // Pisahkan input berdasarkan "-"
+        const [dayStr, monthStr, yearStr] = input.split('-');
+
+        const day = parseInt(dayStr, 10);
+        const month = parseInt(monthStr, 10);
+        const year = parseInt(yearStr, 10);
+
+        if (isNaN(day) || isNaN(month) || isNaN(year)) {
+          throw new Error('Format tidak valid');
+        }
+
+        // Bandingkan dengan tanggal benar
+        if (
+          day === correctBirthdate.day &&
+          month === correctBirthdate.month &&
+          year === correctBirthdate.year
+      ) {
+          message.textContent = "✅ Login berhasil! Selamat datang 🎉";
+          message.style.color = "green";
+          window.location.href ="ucapan.html.html"
+          
+        } else {
+          message.textContent = "❌ Tanggal lahir salah. Silakan coba lagi.";
+          message.style.color = "red";
+        }
+
+      } catch (error) {
+        message.textContent = "⚠️ Gunakan format DD-MM-YYYY (contoh: 17-10-2006)";
+        message.style.color = "orange";
+      }
+    });
+  </script>
+</body>
+</html>

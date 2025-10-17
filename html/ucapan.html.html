@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selamat Ulang Tahun 🎉</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('bg.jpg') no-repeat center center/cover; /* Ganti dengan foto kamu */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    flex-direction: column;
+    background-color: black;
+    padding: 20px 0;
+    
+  }
+  .content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .side-photo {
+    width: 200px;  /* Ukuran foto diperkecil untuk HP */
+    height: 200px; /* Ukuran foto diperkecil untuk HP */
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 15px; /* Jarak dikurangi agar muat */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    border: 2px solid white;
+    
+  }
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+  player-musik {
+  width: 350px;
+  max-width: 80%;
+  /* Menambahkan jarak 20px di bawah pemutar musik */
+  margin-bottom: 20px; 
+}
+
+  .container {
+    background: rgba(0, 0, 0, 0.55);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.25);
+    max-width: 700px;
+    margin: 20px;
+  }
+
+  h1 {
+    font-size: 38px;
+    margin-bottom: 25px;
+  }
+
+  #text {
+    font-size: 22px;
+    white-space: pre-wrap;
+    border-right: 3px solid #fff;
+    padding-right: 5px;
+    animation: blink 0.8s infinite;
+    min-height: 100px;
+  }
+
+  @keyframes blink {
+    0%, 50% { border-color: #fff; }
+    51%, 100% { border-color: transparent; }
+  }
+
+  #end {
+    display: none;
+    font-size: 26px;
+    margin-top: 25px;
+    color: #ffeb3b;
+    animation: fadeIn 2s forwards;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+</style>
+</head>
+<body>
+<audio controls>
+  <source src="nadin.mp3" type="audio/mpeg">
+  Browser Anda tidak mendukung elemen audio.
+</audio>
+<div class="content-wrapper">
+  
+  <img src="poto_kanan.png" class="side-photo">
+
+<div class="container">
+  <h1>🎉 Selamat Ulang Tahun 🎉</h1>
+  <div id="text"></div>
+  <div id="end">💖 Semoga hari-harimu selalu penuh kebahagiaan 💖</div>
+</div>
+<img src="poto_kiri.png" class="side-photo">
+</div>
+
+<script>
+  const message = [
+    "Hari ini... adalah hari yang spesial.",
+    "Hari di mana seseorang yang selalu membuat dunia terlihat lebih indah dilahirkan ke dunia ini 🌸",
+    "",
+    "Aku nggak tahu harus mulai dari mana...",
+    "tapi setiap kali kamu tersenyum, rasanya dunia ikut tenang sebentar.",
+    "",
+    "Aku mungkin bukan orang pertama yang ngucapin ulang tahun hari ini,",
+    "tapi aku harap... aku jadi salah satu yang paling tulus.",
+    "",
+    "Semoga di umurmu yang baru ini, semua hal baik datang tanpa diminta.",
+    "Semoga setiap langkahmu dipenuhi kebahagiaan, dan setiap harimu penuh kejutan manis 🍰",
+    "",
+    "Dan... kalau boleh jujur...",
+    "ada doa kecil yang aku simpan diam-diam.",
+    "Doa supaya aku bisa jadi alasan kamu tersenyum lebih lama hari ini 💫",
+    "",
+    "Selamat ulang tahun ya... semoga semua yang kamu harapkan jadi nyata 🎂💖"
+  ];
+
+  const textElement = document.getElementById("text");
+  const endElement = document.getElementById("end");
+
+  let line = 0;
+  let char = 0;
+  let currentLine = "";
+
+  function type() {
+    if (line < message.length) {
+      if (char < message[line].length) {
+        currentLine += message[line].charAt(char);
+        textElement.textContent = currentLine;
+        char++;
+        setTimeout(type, 130); // ⏳ lebih lambat: 130ms per huruf
+      } else {
+        currentLine += "\n";
+        char = 0;
+        line++;
+        setTimeout(type, 1000); // jeda antar kalimat 1 detik
+      }
+    } else {
+      textElement.style.borderRight = "none";
+      endElement.style.display = "block";
+    }
+  }
+
+  type();
+</script>
+
+</body>
+</html>
